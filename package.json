@@ -9,24 +9,38 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@auth/prisma-adapter": "^2.10.0",
+    "@prisma/client": "^6.16.3",
+    "@radix-ui/react-label": "^2.1.7",
+    "@radix-ui/react-popover": "^1.1.15",
     "@radix-ui/react-slot": "^1.2.3",
+    "@radix-ui/react-toast": "^1.2.15",
+    "@types/bcryptjs": "^3.0.0",
+    "bcryptjs": "^3.0.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
     "framer-motion": "12.23.22",
     "geist": "1.5.1",
+    "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.544.0",
     "next": "15.5.4",
+    "next-auth": "^4.24.11",
     "next-themes": "^0.4.6",
     "postcss-nested": "^7.0.2",
     "postcss-preset-env": "^10.4.0",
     "react": "19.1.0",
+    "react-day-picker": "^9.11.0",
     "react-dom": "19.1.0",
+    "react-icons": "^5.5.0",
     "tailwind-merge": "^3.3.1",
     "tailwindcss-animate": "1.0.7"
   },
   "devDependencies": {
     "@svgr/webpack": "8.1.0",
     "@tailwindcss/typography": "0.5.19",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/next-auth": "^3.13.0",
     "@types/node": "20.19.17",
     "@types/react": "19.1.15",
     "@types/react-dom": "19.1.9",
@@ -35,7 +49,9 @@
     "postcss": "8.4.38",
     "postcss-import": "^16.1.0",
     "postcss-nesting": "12.1.0",
+    "prisma": "^6.16.3",
     "tailwindcss": "3.4.3",
+    "ts-node": "^10.9.2",
     "typescript": "5.3.3"
   }
 }

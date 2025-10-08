@@ -1,0 +1,115 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// User model for authentication
+model User {
+  id               String            @id @default(dbgenerated("gen_random_uuid()"))
+  name             String?
+  email            String            @unique
+  phone            String?           @db.VarChar(255)
+  password         String            @db.Text
+  image            String?           @db.Text
+  accounts         Account[]
+  sessions         Session[]
+  pregnancyInfo    PregnancyInfo[]
+  medicalSchedules MedicalSchedule[]
+  createdAt        DateTime          @default(now()) @map("created_at")
+  updatedAt        DateTime          @updatedAt @map("updated_at")
+
+  @@map("users")
+}
+
+// OAuth account model
+model Account {
+  id                String   @id @default(uuid())
+  userId            String   @map("user_id")
+  type              String   @db.VarChar(255)
+  provider          String   @db.VarChar(255)
+  providerAccountId String   @map("provider_account_id") @db.VarChar(255)
+  refresh_token     String?  @db.Text
+  access_token      String?  @db.Text
+  expires_at        Int?
+  token_type        String?  @db.VarChar(50)
+  scope             String?  @db.Text
+  id_token          String?  @db.Text
+  session_state     String?  @db.VarChar(255)
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model MedicalSchedule {
+  id           String   @id @default(uuid())
+  title        String   @db.VarChar(255)
+  userId       String   @map("user_id")
+  observations String?  @db.Text
+  date         DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  @@map("medical_schedules")
+}
+
+// Session model
+model Session {
+  id           String   @id @default(uuid())
+  sessionToken String   @unique @map("session_token") @db.VarChar(255)
+  userId       String   @map("user_id")
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  @@map("sessions")
+}
+
+// Verification token model
+model VerificationToken {
+  identifier String   @db.VarChar(255)
+  token      String   @unique @db.VarChar(255)
+  expires    DateTime
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+// Password reset token model
+model PasswordResetToken {
+  id        String   @id @default(uuid())
+  email     String   @db.VarChar(255)
+  token     String   @unique @db.VarChar(255)
+  expires   DateTime
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("password_reset_tokens")
+}
+
+// Pregnancy info model
+model PregnancyInfo {
+  id        String   @id @default(uuid())
+  userId    String
+  startDate DateTime
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@unique([userId])
+  @@map("pregnancy_info")
+}

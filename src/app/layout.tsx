@@ -3,6 +3,9 @@ import { Inter, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import { ParticlesBackground } from '@/components/particles-background';
 import { ThemeProvider } from '@/components/theme-provider';
+import { cn } from '@/lib/utils';
+import { type ReactNode } from 'react';
+import { AuthProvider } from '@/contexts/AuthContext';
 
 // Initialize Inter font
 const inter = Inter({
@@ -37,9 +40,9 @@ export const metadata: Metadata = {
   },
   description: "Portfólio profissional de Marcos Menezes, Desenvolvedor Full Stack especializado em React, Next.js e Node.js",
   keywords: [
-    "desenvolvedor", 
-    "full stack", 
-    "portfólio", 
+    "desenvolvedor",
+    "full stack",
+    "portfólio",
     "tecnologia",
     "React",
     "Next.js",
@@ -102,33 +105,32 @@ export const metadata: Metadata = {
   },
   other: {
     'msapplication-TileColor': '#3b82f6',
-  },
+  }
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+type RootLayoutProps = {
+  children: ReactNode;
+};
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html 
-      lang="pt-BR" 
-      className={`${inter.variable} ${jetbrainsMono.variable} scroll-smooth`}
-      suppressHydrationWarning
-    >
-      <body className="min-h-screen bg-background font-sans antialiased text-foreground">
+    <html lang="pt-BR" suppressHydrationWarning>
+      <body className={cn(
+        'min-h-screen bg-white font-sans antialiased dark:bg-slate-950',
+        inter.variable,
+        jetbrainsMono.variable
+      )}>
+
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <ParticlesBackground />
-          <div className="relative z-10 min-h-screen flex flex-col">
-            <main className="flex-1 container mx-auto px-4 py-8 md:py-16 relative z-10">
-              {children}
-            </main>
-          </div>
+          <AuthProvider>
+            <ParticlesBackground />
+            {children}
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>

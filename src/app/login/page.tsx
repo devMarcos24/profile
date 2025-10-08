@@ -1,22 +1,21 @@
 'use client';
 
-import { useState, FormEvent } from 'react';
+import { useState, FormEvent, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useAuth } from '@/contexts/AuthContext';
-import { FiMail, FiLock, FiEye, FiEyeOff, FiUser, FiPhone, FiArrowLeft, FiAlertCircle } from 'react-icons/fi';
+import { FiMail, FiLock, FiEye, FiEyeOff, FiUser, FiPhone, FiArrowLeft, FiAlertCircle, FiLoader } from 'react-icons/fi';
 
 type LoginMode = 'login' | 'register';
 
-export default function LoginPage() {
+function LoginForm() {
   const [mode, setMode] = useState<LoginMode>('login');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { login, register } = useAuth();
   const router = useRouter();
-
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get('callbackUrl') || '/gestacao';
 
@@ -247,5 +246,20 @@ export default function LoginPage() {
         </div>
       </motion.div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-50 to-purple-50 dark:from-gray-900 dark:to-gray-800">
+        <div className="flex items-center space-x-2 text-pink-600 dark:text-pink-400">
+          <FiLoader className="animate-spin h-6 w-6" />
+          <span>Carregando...</span>
+        </div>
+      </div>
+    }>
+      <LoginForm />
+    </Suspense>
   );
 }

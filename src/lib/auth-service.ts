@@ -14,7 +14,6 @@ type User = {
   id: string;
   email: string;
   name: string;
-  role: 'ADMIN' | 'USER';
 };
 
 type LoginResponse = {
@@ -51,7 +50,7 @@ export async function login(email: string, password: string): Promise<LoginRespo
     }
 
     const token = sign(
-      { id: user.id, email: user.email, role: user.role },
+      { id: user.id, email: user.email, },
       JWT_SECRET,
       { expiresIn: '7d' }
     );
@@ -62,7 +61,6 @@ export async function login(email: string, password: string): Promise<LoginRespo
         id: user.id,
         email: user.email || '',
         name: user.name || '',
-        role: user.role as 'ADMIN' | 'USER',
       },
       token,
     };
@@ -82,8 +80,7 @@ export async function validateToken(token: string): Promise<User | null> {
     const decoded = verify(token, JWT_SECRET) as { id: string };
 
     const user = await prisma.user.findFirst({
-      where: { id: decoded.id },
-      select: { id: true, email: true, name: true, role: true },
+      where: { id: decoded.id }
     });
 
     if (!user) return null;

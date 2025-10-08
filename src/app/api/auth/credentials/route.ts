@@ -20,8 +20,6 @@ export async function POST(request: Request) {
       where: { email },
     });
 
-    console.log({ user });
-
     if (!user || !user.password) {
       return NextResponse.json(
         { message: 'Email ou senha inválidos' },
@@ -31,7 +29,6 @@ export async function POST(request: Request) {
 
     const isValidPassword = await bcrypt.compare(password, user.password);
 
-    console.log({ isValidPassword });
     if (!isValidPassword) {
       return NextResponse.json(
         { message: 'Email ou senha inválidos' },

@@ -52,7 +52,6 @@ async function validateJWT(request: NextRequest): Promise<ValidationResult> {
 export async function GET(request: NextRequest) {
   try {
     const result = await validateJWT(request);
-    console.log({ result });
 
     if (result.error || !result.user) {
       return NextResponse.json(

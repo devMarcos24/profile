@@ -16,8 +16,6 @@ export async function POST(request: Request) {
       );
     }
 
-    console.log({ name, email, password, phone });
-
     // Check if user already exists
     const existingUser = await prisma.user.findFirst({
       where: { email },

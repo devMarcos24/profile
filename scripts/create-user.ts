@@ -21,8 +21,6 @@ async function createUser() {
         where: { email },
         data: {
           password: hashedPassword,
-          role: 'ADMIN',
-          emailVerified: new Date(),
         },
       });
       
@@ -36,8 +34,6 @@ async function createUser() {
           name: 'Marcos Menezes',
           email,
           password: hashedPassword,
-          role: 'ADMIN',
-          emailVerified: new Date(),
         },
       });
       
@@ -47,7 +43,6 @@ async function createUser() {
     console.log('-----------------------');
     console.log('Email:', email);
     console.log('Senha:', password);
-    console.log('Role: ADMIN');
     console.log('-----------------------');
   } catch (error) {
     console.error('❌ Erro ao criar/atualizar usuário:', error);

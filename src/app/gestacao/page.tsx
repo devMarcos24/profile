@@ -65,7 +65,6 @@ const PregnancyTracker = () => {
   useEffect(() => {
     (async () => {
       const response = await gestacaoService.get()
-      console.log({ response })
       if (response) {
         const calculatedDueDate = new Date(response.startDate);
         calculatedDueDate.setDate(calculatedDueDate.getDate() + (40 * 7));

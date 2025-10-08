@@ -54,7 +54,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const userData = await validateToken(token);
       
       if (userData) {
-        setUser(userData);
+        setUser(userData as User);
         setAuthStatus('authenticated');
       } else {
         localStorage.removeItem('auth-token');

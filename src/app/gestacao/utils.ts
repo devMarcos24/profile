@@ -1,4 +1,4 @@
-import { BabySize, PregnancyTip, Milestone } from './types';
+import { BabySize, PregnancyTip, Milestone, WeekDay } from './types';
 
 export const calculatePregnancyWeek = (startDate: Date): number => {
   const today = new Date();
@@ -14,8 +14,8 @@ export const calculateDueDate = (startDate: Date): Date => {
 
 const WEEK_DAYS = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'] as const;
 
-export const generateWeekDays = (): { date: Date; day: number; weekDay: string; isToday: boolean }[] => {
-  const days = [];
+export const generateWeekDays = (): WeekDay[] => {
+  const days: WeekDay[] = [];
   const today = new Date();
   
   for (let i = 0; i < 7; i++) {
@@ -23,12 +23,14 @@ export const generateWeekDays = (): { date: Date; day: number; weekDay: string; 
     date.setDate(today.getDate() - today.getDay() + i);
     const dayOfWeek = date.getDay();
     
-    days.push({
+    const weekDay: WeekDay = {
       date,
       day: date.getDate(),
       weekDay: WEEK_DAYS[dayOfWeek] || 'Dom', // Fallback to 'Dom' just in case
       isToday: date.toDateString() === today.toDateString()
-    });
+    };
+    
+    days.push(weekDay);
   }
   
   return days;

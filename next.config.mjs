@@ -1,5 +1,16 @@
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Disable Turbopack for now to avoid conflicts
+  experimental: {
+    turbo: false
+  },
+  
   // Configure path aliases
   webpack: (config) => {
     // This will prevent the favicon.ico from being copied to the output
@@ -10,11 +21,12 @@ const nextConfig = {
     // Add path aliases
     config.resolve.alias = {
       ...config.resolve.alias,
-      '@': require('path').resolve(__dirname, './src'),
+      '@': path.resolve(__dirname, './src'),
     };
     
     return config;
   },
+  
   // Configure the favicon
   async headers() {
     return [

@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { NextRequest } from 'next/server';
 import { PrismaClient } from '@prisma/client';
-import { verifyJWT } from '@/lib/jwt';
+import { verifyJWT } from '../../../lib/jwt';
 
 interface User {
   id: string;

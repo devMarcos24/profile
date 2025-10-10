@@ -26,7 +26,7 @@ export async function POST(request: Request) {
         { status: 401 }
       );
     }
-
+    
     const isValidPassword = await bcrypt.compare(password, user.password);
 
     if (!isValidPassword) {

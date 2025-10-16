@@ -50,11 +50,11 @@ export const metadata: Metadata = {
     "TypeScript",
     "desenvolvimento web"
   ],
-  authors: [{ name: "Marcos Menezes" }],
-  creator: "Marcos Menezes",
-  publisher: "Marcos Menezes",
+  authors: [{ name: 'Marcos Menezes', url: 'https://marcosmenezes.dev' }],
+  creator: 'Marcos Menezes',
+  publisher: 'Marcos Menezes',
   formatDetection: {
-    email: true,
+    email: false,
     address: false,
     telephone: false,
   },
@@ -66,12 +66,10 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    type: 'website',
-    locale: 'pt_BR',
-    url: 'https://marcosmenezes.dev',
-    siteName: 'Marcos Menezes',
     title: 'Marcos Menezes | Desenvolvedor Full Stack',
     description: 'Transformando ideias em experiências digitais incríveis com código limpo e soluções inteligentes.',
+    url: 'https://marcosmenezes.dev',
+    siteName: 'Marcos Menezes',
     images: [
       {
         url: '/og-image.jpg',
@@ -80,6 +78,8 @@ export const metadata: Metadata = {
         alt: 'Marcos Menezes - Desenvolvedor Full Stack',
       },
     ],
+    locale: 'pt_BR',
+    type: 'website',
   },
   twitter: {
     card: 'summary_large_image',

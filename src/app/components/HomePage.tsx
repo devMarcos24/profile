@@ -114,7 +114,7 @@ export default function HomePage() {
             <div className="relative w-full h-full bg-white dark:bg-gray-800 rounded-[2.5rem] overflow-hidden shadow-xl dark:shadow-gray-900/30 flex items-center justify-center p-1.5 transition-all duration-300 group-hover:shadow-2xl group-hover:dark:shadow-gray-900/50">
               <div className="absolute inset-0.5 rounded-[2rem] overflow-hidden">
                 <Image
-                  src="/myphoto.svg"
+                  src="/myphoto.webp"
                   alt="Foto de perfil de Marcos Menezes"
                   width={300}  // Aumentei o tamanho para garantir que a imagem seja visível
                   height={300}

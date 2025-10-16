@@ -8,6 +8,7 @@ import {
   MotionA,
   MotionSection
 } from './ClientMotion';
+import { Link } from 'lucide-react';
 
 const technologies = [
   { name: 'JavaScript', icon: '💻' },
@@ -91,14 +92,13 @@ export default function HomePage() {
                   <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
                 </svg>
               </MotionA>
-              <MotionA
+              <Link
                 href="/projects"
-                className="px-8 py-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white font-medium rounded-xl border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300 cursor-pointer inline-flex items-center"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                  className="px-8 py-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white font-medium rounded-xl border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300 cursor-pointer inline-flex items-center"
+
               >
                 Ver Projetos
-              </MotionA>
+              </Link>
             </MotionDiv>
           </MotionDiv>
           

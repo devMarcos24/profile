@@ -89,11 +89,6 @@ export default function HomePage() {
               <Link 
                 href="/projects" 
                 className="px-8 py-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white font-medium rounded-xl border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300 cursor-pointer inline-flex items-center"
-                onClick={(e) => {
-                  e.preventDefault();
-                  console.log('Navegando para /projects');
-                  window.location.href = '/projects';
-                }}
               >
                 Ver Projetos
               </Link>

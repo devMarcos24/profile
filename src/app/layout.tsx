@@ -88,16 +88,10 @@ export const metadata: Metadata = {
     images: ['/og-image.jpg'],
     creator: '@devmarcos24',
   },
-  icons: {
-    icon: [
-      { url: '/favicon.ico', sizes: 'any' },
-      { url: '/favicon.svg', type: 'image/svg+xml' },
-    ],
-    apple: [
-      { url: '/favicon.svg' },
-    ],
-  },
-  manifest: '/site.webmanifest',
+  icons: [
+    { url: '/favicon.ico', sizes: 'any' },
+    { url: '/favicon.svg', type: 'image/svg+xml' },
+  ],
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
@@ -105,7 +99,8 @@ export const metadata: Metadata = {
   },
   other: {
     'msapplication-TileColor': '#3b82f6',
-  }
+  },
+  manifest: '/site.webmanifest',
 };
 
 type RootLayoutProps = {

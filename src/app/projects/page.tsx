@@ -3,8 +3,13 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowLeft, Github, Linkedin, PersonStandingIcon } from 'lucide-react';
+import { useEffect } from 'react';
 
 export default function ProjectsPage() {
+  useEffect(() => {
+    console.log('ProjectsPage está sendo renderizado');
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/10 pt-20">
       <div className="container mx-auto px-6 py-16">

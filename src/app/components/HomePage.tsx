@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import {
   MotionDiv,
   MotionH1,
@@ -92,14 +93,17 @@ export default function HomePage() {
                   <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
                 </svg>
               </MotionA>
-              <MotionA
-                href="/projects"
+              <Link 
+                href="/projects" 
                 className="px-8 py-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white font-medium rounded-xl border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300 cursor-pointer inline-flex items-center"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  console.log('Navegando para /projects');
+                  window.location.href = '/projects';
+                }}
               >
                 Ver Projetos
-              </MotionA>
+              </Link>
             </MotionDiv>
           </MotionDiv>
 
@@ -113,20 +117,20 @@ export default function HomePage() {
             <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-secondary/30 dark:from-primary/20 dark:to-secondary/20 rounded-[2.5rem] transform rotate-6 transition-all duration-300 group-hover:rotate-3 group-hover:scale-105"></div>
             <div className="relative w-full h-full bg-white dark:bg-gray-800 rounded-[2.5rem] overflow-hidden shadow-xl dark:shadow-gray-900/30 flex items-center justify-center p-1.5 transition-all duration-300 group-hover:shadow-2xl group-hover:dark:shadow-gray-900/50">
               <div className="absolute inset-0.5 rounded-[2rem] overflow-hidden">
-                <Image
-                  src="/myphoto.webp"
-                  alt="Foto de perfil de Marcos Menezes"
-                  width={300}  // Aumentei o tamanho para garantir que a imagem seja visível
-                  height={300}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  onError={(e) => {
-                    console.error('Erro ao carregar a imagem:', e);
-                    // Tenta carregar uma imagem alternativa
-                    const target = e.target as HTMLImageElement;
-                    target.onerror = null;
-                    target.src = '/developer-emoji.svg'; // Usando outra imagem da pasta public
-                  }}
-                />
+                <div className="w-full h-full flex items-center justify-center bg-gray-100 dark:bg-gray-800">
+                  <Image
+                    src="/myphoto.webp"
+                    alt="Foto de perfil de Marcos Menezes"
+                    width={300}
+                    height={300}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.onerror = null;
+                      target.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMTAwIDEwMCI+PHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiNlNWU1ZTUiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBhbGlnbm1lbnQtYmFzZWxpbmU9Im1pZGRsZSIgZmlsbD0iIzY2NiI+Rm90byBkZSBQZXJmaWw8L3RleHQ+PC9zdmc+';
+                    }}
+                  />
+                </div>
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-[2rem]"></div>
             </div>

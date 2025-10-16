@@ -113,8 +113,29 @@ type RootLayoutProps = {
 };
 
 export default function RootLayout({ children }: RootLayoutProps) {
+  // Log para depuração
+  if (typeof window !== 'undefined') {
+    console.log('RootLayout renderizado', {
+      path: window.location.pathname,
+      search: window.location.search,
+      hash: window.location.hash
+    });
+  }
+
   return (
     <html lang="pt-BR" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              console.log('Script de depuração executado');
+              window.addEventListener('load', () => {
+                console.log('Página carregada:', window.location.pathname);
+              });
+            `,
+          }}
+        />
+      </head>
       <body className={cn(
         'min-h-screen bg-white font-sans antialiased dark:bg-slate-950',
         inter.variable,

@@ -150,7 +150,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
         >
           <AuthProvider>
             <ParticlesBackground />
-            {children}
+            <div className="min-h-screen flex flex-col">
+              {children}
+            </div>
           </AuthProvider>
         </ThemeProvider>
       </body>

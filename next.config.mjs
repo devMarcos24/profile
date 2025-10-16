@@ -6,19 +6,29 @@ const __dirname = path.dirname(__filename);
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Disable Turbopack for now to avoid conflicts
-  experimental: {
-    turbo: false
+  // Configurações de renderização
+  reactStrictMode: true,
+  swcMinify: true,
+  
+  // Configuração de redirecionamento para a página inicial
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/home',
+        permanent: true,
+      },
+    ];
   },
   
-  // Configure path aliases
+  // Configuração de aliases
   webpack: (config) => {
-    // This will prevent the favicon.ico from being copied to the output
+    // Remove o plugin de favicon se existir
     config.plugins = config.plugins.filter(
       (plugin) => plugin.constructor.name !== 'FaviconsWebpackPlugin'
     );
     
-    // Add path aliases
+    // Adiciona aliases
     config.resolve.alias = {
       ...config.resolve.alias,
       '@': path.resolve(__dirname, './src'),
@@ -27,7 +37,7 @@ const nextConfig = {
     return config;
   },
   
-  // Configure the favicon
+  // Configuração de headers
   async headers() {
     return [
       {

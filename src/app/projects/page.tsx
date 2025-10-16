@@ -53,7 +53,7 @@ export default function ProjectsPage() {
                 className="px-6 py-3 bg-foreground text-background rounded-lg font-medium flex items-center justify-center gap-2 hover:bg-foreground/90 transition-colors"
               >
                 <PersonStandingIcon className="w-5 h-5" />
-                Tela de Login
+                Tela de Login (Gestão de Gestantes)
               </Link>
               <Link
                 href="https://github.com/devmarcos24"

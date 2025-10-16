@@ -64,16 +64,6 @@ export default function ProjectsPage() {
                 Ver no GitHub
               </Link>
               <Link
-                href="https://github.com/devmarcos24"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-6 py-3 bg-foreground text-background rounded-lg font-medium flex items-center justify-center gap-2 hover:bg-foreground/90 transition-colors"
-              >
-                <Github className="w-5 h-5" />
-                Ver no GitHub
-              </Link>
-
-              <Link
                 href="https://linkedin.com/in/devmarcos24"
                 target="_blank"
                 rel="noopener noreferrer"

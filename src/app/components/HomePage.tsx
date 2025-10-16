@@ -116,14 +116,15 @@ export default function HomePage() {
                 <Image
                   src="/myphoto.svg"
                   alt="Foto de perfil de Marcos Menezes"
-                  width={100}
-                  height={100}
+                  width={300}  // Aumentei o tamanho para garantir que a imagem seja visível
+                  height={300}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   onError={(e) => {
-                    // Fallback para o emoji caso a imagem não carregue
+                    console.error('Erro ao carregar a imagem:', e);
+                    // Tenta carregar uma imagem alternativa
                     const target = e.target as HTMLImageElement;
                     target.onerror = null;
-                    target.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text x="50%" y="50%" font-size="40" text-anchor="middle" dy=".3em" fill="%236B7280">👨‍💻</text></svg>';
+                    target.src = '/developer-emoji.svg'; // Usando outra imagem da pasta public
                   }}
                 />
               </div>
